@@ -1,4 +1,3 @@
-import 'package:fabricadechocolate/botaoItem.dart';
 import 'package:fabricadechocolate/botoesAcoes.dart';
 import 'package:fabricadechocolate/itemLinha.dart';
 import 'package:fabricadechocolate/models/pedido.dart';
@@ -7,7 +6,8 @@ import 'package:flutter/material.dart';
 class PedidosList extends StatelessWidget {
 
   final List<Pedido> pedido;
-  PedidosList({Key key, this.pedido}) : super(key: key);
+  final Function loadListSetState;
+  PedidosList({Key key, this.pedido, this.loadListSetState}) : super(key: key);
 
   String status;
 
@@ -27,11 +27,11 @@ class PedidosList extends StatelessWidget {
                       children: [
                         Column(
                           children: [
-                            ItemLinha(item: "Pedido : " + (pedido[index].id).toString()),
+                            ItemLinha(item: "Nº Pedido : " + (pedido[index].id).toString()),
                             ItemLinha(item: "Nome : " + pedido[index].nome),
                             ItemLinha(item: "Status: " + statusPedido((pedido[index].status)).toUpperCase()),
                             ItemLinha(item: "Tipo : " + (pedido[index].tipoOvo).toUpperCase()),
-                            LinhaBotoes(botaoUm: "Aceito - Não Pago", botaoDois: "Aceito - Pago", botaoTres: "Cancelar")
+                            LinhaBotoes(botaoUm: "Aceito - Não Pago", botaoDois: "Aceito - Pago", botaoTres: "Cancelar", id: pedido[index].id, fun: this.loadListSetState)
                           ],
                         )
                       ],

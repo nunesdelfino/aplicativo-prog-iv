@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
             builder: (context, snapshot) {
               print("future");
               return pedidosList.length > 0
-              ? PedidosList(pedido: pedidosList)
+              ? PedidosList(pedido: pedidosList, loadListSetState: loadListSetState)
               : Center(
                 child: Text("Sem dados",
                   style: Theme.of(context).textTheme.bodyText1,
@@ -73,6 +73,16 @@ class _MyHomePageState extends State<MyHomePage> {
       // setState(() {
               this.pedidosList = pedidosList;
             // });
+    });
+    return futurePedidos;
+  }
+
+  Future loadListSetState() {
+    Future<List<Pedido>> futurePedidos = api.getPedidos();
+    futurePedidos.then((pedidosList) {
+      setState(() {
+              this.pedidosList = pedidosList;
+      });
     });
     return futurePedidos;
   }
