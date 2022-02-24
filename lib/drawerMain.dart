@@ -1,4 +1,7 @@
 
+import 'package:fabricadechocolate/homePage.dart';
+import 'package:fabricadechocolate/paginaPedido.dart';
+import 'package:fabricadechocolate/pedidoList.dart';
 import 'package:flutter/material.dart';
 
 class DrawerMain extends Drawer {
@@ -6,22 +9,52 @@ class DrawerMain extends Drawer {
   Widget build(BuildContext context){
     return Drawer (
       child: ListView(
-        children: [
-          const DrawerHeader(
-            child: Center(child: Text("Menu Principal", style: TextStyle(fontSize: 20.0),)),
-            decoration: BoxDecoration(color: Colors.lightGreen),
+        children: <Widget>[
+
+          UserAccountsDrawerHeader(
+              accountName: Text("Fábrica de Chocolate"),
+              accountEmail: Text("fabricadechocolate@gmail.com"),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Colors.white,
+                child: Text("F", style: TextStyle(fontSize: 40.0)),
+                ),
+            ),
+
+            ListTile(
+              title: Text("Tela Inicial"),
+              leading: Icon(Icons.home),
+              trailing: Icon(Icons.arrow_forward),
+              onTap: (){
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage(title: 'Fabrica de Chocolate')));
+              },
             ),
             ListTile(
-              title: Text("Item 01"),
+              title: Text("Pedidos"),
+              subtitle: Text("Pendentes e Não Pagos"),
+              leading: Icon(Icons.home),
+              trailing: Icon(Icons.arrow_forward),
+              onTap: (){
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => PeginaPedido(title: "Fábrica de Chocolate")));
+              },
             ),
             ListTile(
-              title: Text("Item 02"),
+              title: Text("Entregas"),
+              subtitle: Text("Pendentes e Realizadas"),
+              leading: Icon(Icons.home),
+              trailing: Icon(Icons.arrow_forward),
+              onTap: (){
+
+              },
             ),
             ListTile(
-              title: Text("Item 03"),
-            ),
-            ListTile(
-              title: Text("Item 04"),
+              title: Text("Pesquisar Pedido"),
+              leading: Icon(Icons.search),
+              trailing: Icon(Icons.arrow_forward),
+              onTap: (){
+
+              },
             ),
         ],
       ),
