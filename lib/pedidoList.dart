@@ -34,7 +34,7 @@ class PedidosList extends StatelessWidget {
                             ItemLinha(item: "Tipo : " + (pedido[index].tipoOvo).toUpperCase()),
                             ItemLinha(item: "Sabores : " + sabores(pedido[index])),
                             ItemLinha(item: "Tamanho : " + (pedido[index].tamanho).toString() + " g"),
-                            ItemLinha(item: "Preço : " + (pedido[index].preco.toString())),
+                            ItemLinha(item: "Preço : " + stringNull(pedido[index].preco.toString())),
                             ItemLinha(item: "Data : " + dataPedido(pedido[index].dataEntrega)),
                             ItemLinha(item: "Entregar : " + (pedido[index].entregar)),
                             ItemLinha(item: "Endereço : " + stringNull(pedido[index].endereco)),
@@ -52,7 +52,7 @@ class PedidosList extends StatelessWidget {
   }
 
   String stringNull(String s){
-    if(s != null){
+    if(s != null && s != "null"){
       return s;
     } else {
       return "";

@@ -55,7 +55,12 @@ class _PeginaPedidoState extends State<PeginaPedido> {
             builder: (context, snapshot) {
               print("future");
               return pedidosList.length > 0
-              ? PedidosList(pedido: pedidosList, loadListSetState: loadListSetState)
+              ? SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.only(top: 20),
+                  child: PedidosTeste(pedido: pedidosList, loadListSetState: loadListSetState)
+                  )
+                )
               : Center(
                 child: Text("Sem dados",
                   style: Theme.of(context).textTheme.bodyText1,

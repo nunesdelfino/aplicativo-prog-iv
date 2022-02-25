@@ -19,12 +19,13 @@ class BotaoItem extends StatelessWidget {
     return Column(
       children: [
         ElevatedButton(
+          style: ElevatedButton.styleFrom(minimumSize: Size(35.0, 50.0)),
           onPressed: () => onClickDialog(context, this.id, this.acao),
           //   api.modificarPedido(this.id, this.acao);
           //   fun();
           // }, 
           child: Text(
-            this.texto)
+            this.texto, style: TextStyle(fontSize: 20),),
         )
       ],
     );
