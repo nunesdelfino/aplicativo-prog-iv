@@ -49,6 +49,15 @@ class ApiService {
     }
   }
 
+  Future<Pedido> desfazerEntrega(int id) async {
+    Response response = await put('$apiURLModi/$id/desfazer-entrega');
+    if (response.statusCode == 200) {
+      return Pedido.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Falha ao atualizar a entrega');
+    }
+  }
+
   Future<List<Pedido>> getPedidos() async {
     Response res = await get(apiURL);
 

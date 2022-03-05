@@ -4,6 +4,7 @@ import 'package:fabricadechocolate/services/api_service.dart';
 import 'package:flutter/material.dart';
 
 import 'drawerMain.dart';
+import 'entreguelist.dart';
 
 class PaginaEntrega extends StatefulWidget {
   PaginaEntrega({Key key, this.title}) : super(key: key);
@@ -111,7 +112,7 @@ class _PaginaEntregaState extends State<PaginaEntrega> {
                           ? SingleChildScrollView(
                               child: Container(
                                   padding: EdgeInsets.only(top: 20),
-                                  child: EntregaList(
+                                  child: EntregueList(
                                     entregas: entregueList,
                                     loadListSetState: _getData,
                                   )))
