@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'itemLinha.dart';
 
 const IconData local_shipping = IconData(0xe3a6, fontFamily: 'MaterialIcons');
-const IconData caderno = IconData(0xf0311, fontFamily: 'MaterialIcons');
 
 class EntregueList extends StatefulWidget {
   final List<Pedido> entregas;
@@ -72,6 +71,16 @@ class _EntregueListState extends State<EntregueList> {
                   ItemLinha(item: "Endereço : " + stringNull(item.endereco)),
                   ItemLinha(item: "Obs : " + stringNull(item.observacao)),
                   SizedBox(height: 5),
+                  Container(
+                    child: ListTile(
+                      trailing: IconButton(
+                        icon: Icon(local_shipping, size: 30),
+                        onPressed: () {
+                          _onClickDialog(context, item);
+                        },
+                      ),
+                    ),
+                  )
                 ],
               )
             ],
@@ -143,5 +152,45 @@ class _EntregueListState extends State<EntregueList> {
     List<String> d;
     d = data.split("-");
     return d[2] + "/" + d[1] + "/" + d[0];
+  }
+
+  _onClickDialog(BuildContext context, Pedido entregas) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return WillPopScope(
+          onWillPop: () async => false,
+          child: AlertDialog(
+            title: Text("Deseja desmarcar o pedido (" +
+                entregas.id.toString() +
+                "):" +
+                "\n\n" +
+                "Cliente: " +
+                entregas.nome +
+                "\nTel: " +
+                entregas.contato +
+                "\n\nComo entregue?"),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("Cancelar"),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              FlatButton(
+                child: Text("Sim"),
+                onPressed: () {
+                  Navigator.pop(context);
+                  ApiService().desfazerEntrega(entregas.id);
+
+                  //loadListSetState();
+                },
+              )
+            ],
+          ),
+        );
+      },
+    );
   }
 }
