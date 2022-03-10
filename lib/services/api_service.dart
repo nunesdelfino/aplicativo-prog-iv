@@ -5,8 +5,18 @@ import 'package:http/http.dart';
 
 class ApiService {
 
-  final String apiURL = "http://192.168.3.101:8081/fabricadechocolate-api/api/v1/pedido/aceitos-pendentes";
-  final String apiURLModi = "http://192.168.3.101:8081/fabricadechocolate-api/api/v1/pedido";
+  final String apiURL = "http://192.168.1.15:8081/fabricadechocolate-api/api/v1/pedido/aceitos-pendentes";
+  final String apiURLModi = "http://192.168.1.15:8081/fabricadechocolate-api/api/v1/pedido";
+
+  Future<Pedido> getById(String id) async {
+    Response res = await get('$apiURLModi/$id'); 
+    if(res.statusCode == 200){
+      return Pedido.fromJson(json.decode(res.body));
+    }else{
+      return null;
+     // throw Exception('Pedido não encontrado');
+    }
+  }
 
   Future<List<Pedido>> getPedidos() async {
     Response res = await get(apiURL);

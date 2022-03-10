@@ -1,6 +1,7 @@
 
 import 'package:fabricadechocolate/homePage.dart';
 import 'package:fabricadechocolate/paginaPedido.dart';
+import 'package:fabricadechocolate/paginaPesquisa.dart';
 import 'package:fabricadechocolate/pedidoList.dart';
 import 'package:flutter/material.dart';
 
@@ -53,7 +54,8 @@ class DrawerMain extends Drawer {
               leading: Icon(Icons.search),
               trailing: Icon(Icons.arrow_forward),
               onTap: (){
-
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => PaginaPesquisa(title: "Fábrica de Chocolate")));
               },
             ),
         ],
