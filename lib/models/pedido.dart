@@ -15,11 +15,12 @@ class Pedido {
   final String entregar;
   final String endereco;
   final String dataEntrega;
+  final String statusEntrega;
+
   bool isExpanded;
 
   Pedido(
-    {
-      this.id,
+      {this.id,
       this.nome,
       this.tipoOvo,
       this.status,
@@ -35,9 +36,8 @@ class Pedido {
       this.endereco,
       this.preco,
       this.observacao,
-      this.isExpanded = false
-    }
-  );
+      this.statusEntrega,
+      this.isExpanded = false});
 
   factory Pedido.fromJson(Map<String, dynamic> json) {
     return Pedido(
@@ -57,11 +57,17 @@ class Pedido {
       endereco: json['endereco'] as String,
       preco: json['preco'] as double,
       observacao: json['observacao'] as String,
+      statusEntrega: (json['statusEntrega'] as bool).toString(),
     );
   }
 
   @override
   String toString() {
     return '{id: $id, nome: $nome, tipoOvo: $tipoOvo, status: $status}';
+  }
+
+  @override
+  String toStringEntregas() {
+    return '{id: $id, nome: $nome, tipoOvo: $tipoOvo, statusEntrega: $statusEntrega}';
   }
 }
