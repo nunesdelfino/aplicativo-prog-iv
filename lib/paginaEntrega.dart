@@ -72,7 +72,7 @@ class _PaginaEntregaState extends State<PaginaEntrega> {
             body: TabBarView(
               children: <Widget>[
                 FutureBuilder(
-                    future: loadListEntrega(),
+                    //future: loadListEntrega(),
                     builder: (context, snapshot) {
                       print("feature builder");
                       print(snapshot.connectionState);
@@ -103,7 +103,7 @@ class _PaginaEntregaState extends State<PaginaEntrega> {
 
                     ),
                 FutureBuilder(
-                    future: loadListEntregues(),
+                   // future: loadListEntregues(),
                     builder: (context, snapshot) {
                       print("feature builder");
                       print(snapshot.connectionState);
@@ -139,33 +139,33 @@ class _PaginaEntregaState extends State<PaginaEntrega> {
             )));
   }
 
-  Future<List<Pedido>> loadListEntrega() {
-    //async
-    print("load list");
-    Future<List<Pedido>> futureEntregas = api.entregar();
-    futureEntregas.then((entregaList) {
-      this.entregaList = entregaList;
-    });
-    return futureEntregas;
-  }
+  // Future<List<Pedido>> loadListEntrega() {
+  //   //async
+  //   print("load list");
+  //  // Future<List<Pedido>> futureEntregas = api.entregar();
+  //   futureEntregas.then((entregaList) {
+  //     this.entregaList = entregaList;
+  //   });
+  //   return futureEntregas;
+  // }
 
 //Adicionado 15/02/2022
-  Future<List<Pedido>> loadListEntregues() {
-    //async
-    print("load list");
-    Future<List<Pedido>> futureEntregues = api.entregue();
-    futureEntregues.then((entregueList) {
-      this.entregueList = entregueList;
-    });
-    return futureEntregues;
-  }
+  // Future<List<Pedido>> loadListEntregues() {
+  //   //async
+  //   print("load list");
+  //   Future<List<Pedido>> futureEntregues = api.entregue();
+  //   futureEntregues.then((entregueList) {
+  //     this.entregueList = entregueList;
+  //   });
+  //   return futureEntregues;
+  // }
 
 //Dois SetState
   _getData() {
     setState(() {
-      loadListEntrega();
+      //loadListEntrega();
       //Adicionado 15/02/2022
-      loadListEntregues();
+     // loadListEntregues();
     });
   }
 
@@ -173,8 +173,8 @@ class _PaginaEntregaState extends State<PaginaEntrega> {
   Future<void> initState() {
     //async
     super.initState();
-    loadListEntrega();
+   // loadListEntrega();
     //Adicionado 15/02/2022
-    loadListEntregues();
+   // loadListEntregues();
   }
 }
