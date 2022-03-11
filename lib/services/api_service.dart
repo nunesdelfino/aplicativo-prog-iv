@@ -5,9 +5,9 @@ import 'package:http/http.dart';
 
 class ApiService {
   final String apiURL =
-      "http://192.168.1.104:8081/fabricadechocolate-api/api/v1/pedido/aceitos-pendentes";
+      "http://192.168.3.100:8081/fabricadechocolate-api/api/v1/pedido/aceitos-pendentes";
   final String apiURLModi =
-      "http://192.168.1.104:8081/fabricadechocolate-api/api/v1/pedido";
+      "http://192.168.3.100:8081/fabricadechocolate-api/api/v1/pedido";
 
   Future<List<Pedido>> entregar() async {
     Response res = await get('$apiURLModi/entregar');

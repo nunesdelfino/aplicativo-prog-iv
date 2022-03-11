@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import 'botoesAcoes.dart';
 import 'itemLinha.dart';
@@ -35,22 +36,6 @@ class _PedidosTesteState extends State<PedidosTeste> {
                 title: Text(item.id.toString() + " - " + item.nome + " - " + contato(item.contato) + " - " + captalizar(statusPedido(item.status))),
               );
             },
-            // body: ListTile(
-            //     title: Text(
-            //                 "Tipo : " + captalizar(item.tipoOvo) + " -- "
-            //                 "Tamanho : " + (item.tamanho).toString() + " g" + " -- "
-            //                 "Preço : " + stringNull(item.preco.toString()) + "\n" +
-            //                 "Sabores : " + sabores(item) + "\n" +
-            //                 "Entregar : " + (item.entregar) + " -- " +
-            //                 "Data : " + dataPedido(item.dataEntrega) + "\n" +
-            //                 "Endereço : " + stringNull(item.endereco) + "\n" +
-            //                 "Obs : " + stringNull(item.observacao) + "\n"
-            //     ),
-            //     trailing: const Icon(Icons.delete),
-            //     onTap: () {
-            //         widget.pedido.removeWhere((Pedido currentItem) => item == currentItem);
-            //         widget.loadListSetState();
-            //     }),
             body: Card(
                   child: InkWell(
                     onTap: () {
@@ -60,19 +45,67 @@ class _PedidosTesteState extends State<PedidosTeste> {
                       children: [
                         Column(
                           children: [
-                            ItemLinha(
-                              item: "Tipo : " + captalizar(item.tipoOvo) + " === " + 
-                              "Tamanho : " + (item.tamanho).toString() + " g === " +
-                              "Preço : " + stringNull(item.preco.toString())
+                            // ItemLinha(item: "Tipo : " + captalizar(item.tipoOvo)),
+                            // ItemLinha(item: "Tamanho : " + (item.tamanho).toString() + " g",),
+                            // ItemLinha(item: "Preço : " + stringNull(item.preco.toString())),
+                            // ItemLinha(item: "Sabores : " + sabores(item)),
+                            // ItemLinha(item: "Entregar : " + (item.entregar)),
+                            // ItemLinha(item: "Data : " + dataPedido(item.dataEntrega)),
+                            // ItemLinha(item: "Endereço : " + stringNull(item.endereco)),
+                            // ItemLinha(item: "Obs : " + stringNull(item.observacao)),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  children: [
+                                    Image.asset('images/colher.png', height: 70.0,),
+                                    SizedBox(height: 7),
+                                    Text(item.tamanho + " g", style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15))
+                                  ],
+                                ),
+                                SizedBox(width: 12),
+                                Expanded(
+                                  child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text("Sabores: ", style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14)),
+                                    SizedBox(height: 3),
+                                    Text(sabores(item)),
+                                    SizedBox(height: 3),
+                                    Text("Endereço: ", style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15)),
+                                    Text(stringNull(item.endereco)),
+                                    SizedBox(height: 3),
+                                    Text("OBS: ", style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15)),
+                                    Text(stringNull(item.observacao)),
+                                  ],
+                                ),
+                                ),
+                                SizedBox(width: 12),
+                                Container(
+                                  alignment: Alignment.topRight,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Container(
+                                        
+                                        child: Text("R\u0024" + stringNull(item.preco.toString())),
+                                      ),
+                                      Container(
+                                        child: Text(dataPedido(item.dataEntrega)),
+                                      ),
+                                      Container(
+                                        child: Text((item.entregar)),
+                                      ),
+                                    ]
+                                  ),
+                                )
+                              ],
                             ),
-                            ItemLinha(item: "Sabores : " + sabores(item)),
-                            ItemLinha(
-                              item: "Entregar : " + (item.entregar) + " -- " +
-                              "Data : " + dataPedido(item.dataEntrega)
-                            ),
-                            ItemLinha(item: "Endereço : " + stringNull(item.endereco)),
-                            ItemLinha(item: "Obs : " + stringNull(item.observacao)),
                             SizedBox(height: 5),
+                            Divider(color: Colors.black,),
                             LinhaBotoes(botaoUm: "Aceito - Não Pago", botaoDois: "Aceito - Pago", botaoTres: "Cancelar", id: item.id, fun: widget.loadListSetState),
                             SizedBox(height: 5),
                           ],

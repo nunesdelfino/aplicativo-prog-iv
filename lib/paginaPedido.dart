@@ -7,7 +7,7 @@ import 'package:flutter/rendering.dart';
 import 'drawerMain.dart';
 import 'pedidoList.dart';
 
-class PeginaPedido extends StatefulWidget {
+class  PeginaPedido extends StatefulWidget {
   PeginaPedido({Key key, this.title}) : super(key: key);
 
   final String title;

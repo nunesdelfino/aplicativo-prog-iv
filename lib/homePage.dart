@@ -15,14 +15,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final ApiService api = ApiService();
-  List<Pedido> pedidosList;
+  // final ApiService api = ApiService();
+  // List<Pedido> pedidosList;
 
   @override
   Widget build(BuildContext context) {
-    if(pedidosList == null) {
-      pedidosList = [];
-    }
+    // if(pedidosList == null) {
+    //   pedidosList = [];
+    // }
 
     return Scaffold(
       drawer: DrawerMain(),
