@@ -179,10 +179,10 @@ class _EntregaListState extends State<EntregaList> {
                 child: Text("Sim"),
                 onPressed: () {
                   Navigator.pop(context);
-                  ApiService().updateEntregas(entregas.id);
+                 ApiService().updateEntregas(entregas.id);
 
                   
-                  //loadListSetState();
+                  loadListSetState();
                 },
               )
             ],
