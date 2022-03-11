@@ -92,14 +92,14 @@ class _PaginaEntregaState extends State<PaginaEntrega> {
                             );
                     }
 
-                    //  return entregaList.length > 0
-                    //      ? new EntregaList(
-                    //          //criar classe com o nome
-                    //          entregas: entregaList)//,funcao: _getData())
-                    //      : new Center(
-                    //          child: new Text("Nenhum registro encontrado!",
-                    //              style:
-                    //                  Theme.of(context).textTheme.headline6)
+                     return entregaList.length > 0
+                         ? new EntregaList(
+                             //criar classe com o nome
+                             entregas: entregaList)//,funcao: _getData())
+                         : new Center(
+                             child: new Text("Nenhum registro encontrado!",
+                                 style:
+                                     Theme.of(context).textTheme.headline6)
 
                     ),
                 FutureBuilder(
