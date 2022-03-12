@@ -41,4 +41,53 @@ class ApiService {
       throw Exception('Failed to load a case');
     }
   }
+
+Future<List<Pedido>> entregar() async {
+    Response res = await get('$apiURLModi/entregar');
+    if (res.statusCode == 200) {
+      List<dynamic> body = jsonDecode(res.body);
+      List<Pedido> entregas =
+          body.map((dynamic item) => Pedido.fromJson(item)).toList();
+      return entregas;
+    } else if (res.statusCode == 404) {
+      return [];
+    } else {
+      throw "Falha ao carregar a lista de pedidos a serem entregues";
+    }
+  }
+
+  Future<List<Pedido>> entregue() async {
+    Response res = await get('$apiURLModi/entregue');
+
+    if (res.statusCode == 200) {
+      List<dynamic> body = jsonDecode(res.body);
+      List<Pedido> entregas =
+          body.map((dynamic item) => Pedido.fromJson(item)).toList();
+      return entregas;
+    }
+    if (res.statusCode == 404) {
+      return [];
+    } else {
+      throw "Falha ao carregar Lista";
+    }
+  }
+
+  Future<Pedido> updateEntregas(int id) async {
+    Response response = await put('$apiURLModi/$id/entregar-pedido');
+    if (response.statusCode == 200) {
+      return Pedido.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Falha ao atualizar a entrega');
+    }
+  }
+
+  Future<Pedido> desfazerEntrega(int id) async {
+    Response response = await put('$apiURLModi/$id/desfazer-entrega');
+    if (response.statusCode == 200) {
+      return Pedido.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Falha ao atualizar a entrega');
+    }
+  }
+
 }

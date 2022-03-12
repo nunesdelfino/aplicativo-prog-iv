@@ -1,5 +1,6 @@
 
 import 'package:fabricadechocolate/homePage.dart';
+import 'package:fabricadechocolate/paginaEntrega.dart';
 import 'package:fabricadechocolate/paginaPedido.dart';
 import 'package:fabricadechocolate/paginaPesquisa.dart';
 import 'package:fabricadechocolate/pedidoList.dart';
@@ -45,9 +46,14 @@ class DrawerMain extends Drawer {
               subtitle: Text("Pendentes e Realizadas"),
               leading: Icon(Icons.home),
               trailing: Icon(Icons.arrow_forward),
-              onTap: (){
-
-              },
+              onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          PaginaEntrega(title: "Fábrica de Chocolate")));
+            },
             ),
             ListTile(
               title: Text("Pesquisar Pedido"),
