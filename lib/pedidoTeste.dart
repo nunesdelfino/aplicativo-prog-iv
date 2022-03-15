@@ -1,4 +1,6 @@
+import 'package:fabricadechocolate/itemList.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import 'botoesAcoes.dart';
 import 'itemLinha.dart';
@@ -35,52 +37,14 @@ class _PedidosTesteState extends State<PedidosTeste> {
                 title: Text(item.id.toString() + " - " + item.nome + " - " + contato(item.contato) + " - " + captalizar(statusPedido(item.status))),
               );
             },
-            // body: ListTile(
-            //     title: Text(
-            //                 "Tipo : " + captalizar(item.tipoOvo) + " -- "
-            //                 "Tamanho : " + (item.tamanho).toString() + " g" + " -- "
-            //                 "Preço : " + stringNull(item.preco.toString()) + "\n" +
-            //                 "Sabores : " + sabores(item) + "\n" +
-            //                 "Entregar : " + (item.entregar) + " -- " +
-            //                 "Data : " + dataPedido(item.dataEntrega) + "\n" +
-            //                 "Endereço : " + stringNull(item.endereco) + "\n" +
-            //                 "Obs : " + stringNull(item.observacao) + "\n"
-            //     ),
-            //     trailing: const Icon(Icons.delete),
-            //     onTap: () {
-            //         widget.pedido.removeWhere((Pedido currentItem) => item == currentItem);
-            //         widget.loadListSetState();
-            //     }),
-            body: Card(
-                  child: InkWell(
-                    onTap: () {
-                    },
-                    child: ListView(
-                      shrinkWrap: true,
-                      children: [
-                        Column(
-                          children: [
-                            ItemLinha(
-                              item: "Tipo : " + captalizar(item.tipoOvo) + " === " + 
-                              "Tamanho : " + (item.tamanho).toString() + " g === " +
-                              "Preço : " + stringNull(item.preco.toString())
-                            ),
-                            ItemLinha(item: "Sabores : " + sabores(item)),
-                            ItemLinha(
-                              item: "Entregar : " + (item.entregar) + " -- " +
-                              "Data : " + dataPedido(item.dataEntrega)
-                            ),
-                            ItemLinha(item: "Endereço : " + stringNull(item.endereco)),
-                            ItemLinha(item: "Obs : " + stringNull(item.observacao)),
-                            SizedBox(height: 5),
-                            LinhaBotoes(botaoUm: "Aceito - Não Pago", botaoDois: "Aceito - Pago", botaoTres: "Cancelar", id: item.id, fun: widget.loadListSetState),
-                            SizedBox(height: 5),
-                          ],
-                        )
-                      ],
-                    )
-                  )
-              ),
+            body: Column(
+              children: [
+                ItemList(item: item),
+                SizedBox(height: 5),
+                LinhaBotoes(botaoUm: "Aceito - Não Pago", botaoDois: "Aceito - Pago", botaoTres: "Cancelar", id: item.id, fun: widget.loadListSetState),
+                SizedBox(height: 5),
+              ],
+            ),
             isExpanded: item.isExpanded,
           );
         }).toList(),

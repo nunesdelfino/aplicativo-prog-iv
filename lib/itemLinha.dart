@@ -10,12 +10,12 @@ class ItemLinha extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Padding(
           padding: EdgeInsets.only(left: 5, top: 5),
-          child: Text(this.item, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700))
+          child: Text(this.item, style: TextStyle(fontSize: 18))
         )
       ],
     );
