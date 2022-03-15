@@ -182,7 +182,7 @@ class _EntregueListState extends State<EntregueList> {
                 child: Text("Sim"),
                 onPressed: () {
                   Navigator.pop(context);
-                  ApiService().desfazerEntrega(entregas.id);
+                  //ApiService().desfazerEntrega(entregas.id);
 
                   //loadListSetState();
                 },
