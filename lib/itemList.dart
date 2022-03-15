@@ -27,7 +27,7 @@ class ItemList extends StatelessWidget {
                     children: [
                       Column(
                         children: [
-                          Image.asset('images/colher.png', height: 70.0,),
+                          Image.asset(verificaImagem(item.tipoOvo), height: 70.0,),
                           SizedBox(height: 7),
                           Text(item.tamanho + " g", style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15))
                         ],
@@ -70,14 +70,24 @@ class ItemList extends StatelessWidget {
                   ),
                   SizedBox(height: 5),
                   Divider(color: Colors.black,),
-                  LinhaBotoes(botaoUm: "Aceito - Não Pago", botaoDois: "Aceito - Pago", botaoTres: "Cancelar", id: this.item.id, fun: this.loadListSetState),
-                  SizedBox(height: 5),
                 ],
               )
             ],
           )
         )
     );
+  }
+
+  String verificaImagem(String s) {
+    if(s.toLowerCase().compareTo('colher') == 0){
+      return 'images/colher.png';
+    }
+
+    if(s.toLowerCase().compareTo('trufado') == 0){
+      return 'images/trufado.png';
+    }
+
+    return 'images/simples.png';
   }
 
   String captalizar(String s){

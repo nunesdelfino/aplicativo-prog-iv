@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:fabricadechocolate/itemList.dart';
 import 'package:fabricadechocolate/models/pedido.dart';
 import 'package:fabricadechocolate/services/api_service.dart';
 import 'package:flutter/material.dart';
@@ -49,24 +50,25 @@ class _EntregaListState extends State<EntregaList> {
             children: [
               Column(
                 children: [
-                  ItemLinha(
-                      item: "Tipo : " +
-                          captalizar(item.tipoOvo) +
-                          " === " +
-                          "Tamanho : " +
-                          (item.tamanho).toString() +
-                          " g === " +
-                          "Preço : " +
-                          stringNull(item.preco.toString())),
-                  ItemLinha(item: "Sabores : " + sabores(item)),
-                  ItemLinha(
-                      item: "Entregar : " +
-                          (item.entregar) +
-                          " -- " +
-                          "Data : " +
-                          dataPedido(item.dataEntrega)),
-                  ItemLinha(item: "Endereço : " + stringNull(item.endereco)),
-                  ItemLinha(item: "Obs : " + stringNull(item.observacao)),
+                  // ItemLinha(
+                  //     item: "Tipo : " +
+                  //         captalizar(item.tipoOvo) +
+                  //         " === " +
+                  //         "Tamanho : " +
+                  //         (item.tamanho).toString() +
+                  //         " g === " +
+                  //         "Preço : " +
+                  //         stringNull(item.preco.toString())),
+                  // ItemLinha(item: "Sabores : " + sabores(item)),
+                  // ItemLinha(
+                  //     item: "Entregar : " +
+                  //         (item.entregar) +
+                  //         " -- " +
+                  //         "Data : " +
+                  //         dataPedido(item.dataEntrega)),
+                  // ItemLinha(item: "Endereço : " + stringNull(item.endereco)),
+                  // ItemLinha(item: "Obs : " + stringNull(item.observacao)),
+                  ItemList(item: item),
                   SizedBox(height: 5),
                   Container(
                     child: ListTile(

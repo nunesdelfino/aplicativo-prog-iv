@@ -37,7 +37,14 @@ class _PedidosTesteState extends State<PedidosTeste> {
                 title: Text(item.id.toString() + " - " + item.nome + " - " + contato(item.contato) + " - " + captalizar(statusPedido(item.status))),
               );
             },
-            body: ItemList(loadListSetState: widget.loadListSetState, item: item),
+            body: Column(
+              children: [
+                ItemList(item: item),
+                SizedBox(height: 5),
+                LinhaBotoes(botaoUm: "Aceito - Não Pago", botaoDois: "Aceito - Pago", botaoTres: "Cancelar", id: item.id, fun: widget.loadListSetState),
+                SizedBox(height: 5),
+              ],
+            ),
             isExpanded: item.isExpanded,
           );
         }).toList(),
