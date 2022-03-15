@@ -20,7 +20,8 @@ class PaginaPesquisa extends StatefulWidget {
 class _PaginaPesquisaState extends State<PaginaPesquisa> {
   final ApiService api = ApiService();
   Pedido pedido = new Pedido(id: 0);
-  
+  String idbusca = "0";
+
   TextEditingController control;
 
   @override
@@ -75,7 +76,7 @@ class _PaginaPesquisaState extends State<PaginaPesquisa> {
 
  //quando pesquisa chama o loadList de novo e quando chama gera erro.
   Future loadList(){
-    Future<Pedido> futurePedidos = api.getById();
+    Future<Pedido> futurePedidos = api.getById(this.idbusca);
     futurePedidos.then((pedido) {
         this.pedido = pedido;
     });
@@ -97,6 +98,7 @@ class _PaginaPesquisaState extends State<PaginaPesquisa> {
     Future p;
     p = api.getById(myController.text);
     loadListSetState(p);
+    this.idbusca = myController.text;
   }
 
 }
