@@ -64,10 +64,7 @@ class _PaginaPesquisaState extends State<PaginaPesquisa> {
               }
             ),
 
-            // Pedido Item(
-            //    item: "Id:" + item.id + "|" +
-            //    "Nome: " + item.no
-            //)
+            
           ],
         )
       ),
