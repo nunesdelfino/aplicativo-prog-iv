@@ -73,7 +73,7 @@ class _EntregaListState extends State<EntregaList> {
                   Container(
                     child: ListTile(
                       trailing: IconButton(
-                        icon: Icon(local_shipping, size: 30),
+                        icon: Icon(Icons.local_shipping, size: 30),
                         onPressed: () {
                           _onClickDialog(context, item);
                         },

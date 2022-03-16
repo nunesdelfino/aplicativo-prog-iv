@@ -7,6 +7,7 @@ class LinhaBotoes extends StatelessWidget {
   final String botaoUm;
   final String botaoDois;
   final String botaoTres;
+  final String botaoEntrega;
   final int id;
   final Function fun;
   const LinhaBotoes({
@@ -15,7 +16,8 @@ class LinhaBotoes extends StatelessWidget {
     this.botaoDois,
     this.botaoTres,
     this.id,
-    this.fun
+    this.fun,
+    this.botaoEntrega
   }) : super(key: key);
 
   @override
@@ -29,6 +31,7 @@ class LinhaBotoes extends StatelessWidget {
         BotaoItem(texto: this.botaoDois, id: this.id, acao: "aceitar-pedido-pago", fun: this.fun),
         SizedBox(width: 10),
         BotaoItem(texto: this.botaoTres, id: this.id, acao: "cancelar-pedido", fun: this.fun),
+        SizedBox(width: 10),
       ],
     );
   }

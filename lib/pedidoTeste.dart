@@ -42,7 +42,7 @@ class _PedidosTesteState extends State<PedidosTeste> {
                 ItemList(item: item),
                 SizedBox(height: 5),
                 LinhaBotoes(botaoUm: "Aceito - Não Pago", botaoDois: "Aceito - Pago", botaoTres: "Cancelar", id: item.id, fun: widget.loadListSetState),
-                SizedBox(height: 5),
+                SizedBox(width: 20),
               ],
             ),
             isExpanded: item.isExpanded,
