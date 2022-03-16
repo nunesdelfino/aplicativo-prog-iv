@@ -19,7 +19,10 @@ class PaginaPesquisa extends StatefulWidget {
 
 class _PaginaPesquisaState extends State<PaginaPesquisa> {
   final ApiService api = ApiService();
-  Pedido pedido;
+  Pedido pedido = new Pedido(id: 0);
+  String idbusca = "0";
+
+  TextEditingController control;
 
   @override
   Widget build(BuildContext context) {
@@ -45,21 +48,39 @@ class _PaginaPesquisaState extends State<PaginaPesquisa> {
         ]
       ),
       body: Card(
-        child:  ListView(
+        child:  Column(
           children:[
-            BarraBusca(),
-          //  Pedido Item(
-          //     item: "Id:" + item.id + "|" +
-          //     "Nome: " + item.no
+            BarraBusca(pesquisar: Pesquisa),
+            FutureBuilder(
+              future: loadList(),
+              builder: (context, snapshot){
+                print("teste");
+                return pedido != null? Container(
+                  child: Text(pedido.nome)
+                ): Center(
+                  child: Text("Sem dados",
+                  style: Theme.of(context).textTheme.bodyText1)
+                );
+              }
+            ),
 
-            //)
+            
           ],
         )
       ),
     );
   }
 
- 
+ //quando pesquisa chama o loadList de novo e quando chama gera erro.
+  Future loadList(){
+    Future<Pedido> futurePedidos = api.getById(this.idbusca);
+    futurePedidos.then((pedido) {
+        this.pedido = pedido;
+    });
+    return futurePedidos; 
+  }
+
+
   Future loadListSetState(Future f) {
     Future<Pedido> futurePedidos = f;
     futurePedidos.then((pedido) {
@@ -69,5 +90,13 @@ class _PaginaPesquisaState extends State<PaginaPesquisa> {
     });
     return futurePedidos;
   }
+
+  Pesquisa(TextEditingController myController){
+    Future p;
+    p = api.getById(myController.text);
+    loadListSetState(p);
+    this.idbusca = myController.text;
+  }
+
 }
 

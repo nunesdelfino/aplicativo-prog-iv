@@ -72,7 +72,7 @@ class EntregaListCopy extends StatelessWidget {
                 child: Text("Sim"),
                 onPressed: () {
                   Navigator.pop(context);
-                  api.updateEntregas(entregas.id);
+                 // api.updateEntregas(entregas.id);
                   funcao();
                 },
               )
