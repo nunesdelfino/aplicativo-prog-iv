@@ -63,7 +63,7 @@ class ItemList extends StatelessWidget {
                           SizedBox(height: 40),
                           Text(dataPedido(item.dataEntrega)),
                           SizedBox(height: 20),
-                          Text((item.entregar)),
+                          Text(("Entregar: " + captalizar(item.entregar))),
                         ]
                       ),
                     ],
