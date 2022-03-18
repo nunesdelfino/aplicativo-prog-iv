@@ -40,10 +40,7 @@ class _PaginaEntregaState extends State<PaginaEntrega> {
                   padding: EdgeInsets.only(right: 15),
                   child: GestureDetector(
                     onTap: () {
-                      setState(() {
-                        this.entregaList = entregaList;
-                        this.entregueList = entregueList;
-                      });
+                      loadList();
                     },
                     child: Icon(Icons.refresh),
                   ),
@@ -72,7 +69,7 @@ class _PaginaEntregaState extends State<PaginaEntrega> {
             body: TabBarView(
               children: <Widget>[
                 FutureBuilder(
-                    //future: loadListEntrega(),
+                    future: loadListEntrega(),
                     builder: (context, snapshot) {
                       print("feature builder");
                       print(snapshot.connectionState);
@@ -83,7 +80,7 @@ class _PaginaEntregaState extends State<PaginaEntrega> {
                                   padding: EdgeInsets.only(top: 20),
                                   child: EntregaList(
                                       entregas: entregaList,
-                                      loadListSetState: _getData)))
+                                      loadListSetState: loadList)))
                           : Center(
                               child: Text(
                                 "Sem dados",
@@ -103,7 +100,7 @@ class _PaginaEntregaState extends State<PaginaEntrega> {
 
                     ),
                 FutureBuilder(
-                   // future: loadListEntregues(),
+                    future: loadListEntregues(),
                     builder: (context, snapshot) {
                       print("feature builder");
                       print(snapshot.connectionState);
@@ -114,7 +111,7 @@ class _PaginaEntregaState extends State<PaginaEntrega> {
                                   padding: EdgeInsets.only(top: 20),
                                   child: EntregueList(
                                     entregas: entregueList,
-                                    loadListSetState: _getData,
+                                    loadListSetState: loadList,
                                   )))
                           : Center(
                               child: Text(
@@ -139,33 +136,33 @@ class _PaginaEntregaState extends State<PaginaEntrega> {
             )));
   }
 
-  // Future<List<Pedido>> loadListEntrega() {
-  //   //async
-  //   print("load list");
-  //  // Future<List<Pedido>> futureEntregas = api.entregar();
-  //   futureEntregas.then((entregaList) {
-  //     this.entregaList = entregaList;
-  //   });
-  //   return futureEntregas;
-  // }
+  Future<List<Pedido>> loadListEntrega() {
+    //async
+    print("loadListEntrega");
+    Future<List<Pedido>> futureEntregas = api.entregar();
+    futureEntregas.then((entregaList) {
+      this.entregaList = entregaList;
+    });
+    return futureEntregas;
+  }
 
 //Adicionado 15/02/2022
-  // Future<List<Pedido>> loadListEntregues() {
-  //   //async
-  //   print("load list");
-  //   Future<List<Pedido>> futureEntregues = api.entregue();
-  //   futureEntregues.then((entregueList) {
-  //     this.entregueList = entregueList;
-  //   });
-  //   return futureEntregues;
-  // }
+  Future<List<Pedido>> loadListEntregues() {
+    //async
+    print("loadListEntregues");
+    Future<List<Pedido>> futureEntregues = api.entregue();
+    futureEntregues.then((entregueList) {
+      this.entregueList = entregueList;
+    });
+    return futureEntregues;
+  }
 
 //Dois SetState
-  _getData() {
+  loadList() {
     setState(() {
-      //loadListEntrega();
+      loadListEntrega();
       //Adicionado 15/02/2022
-     // loadListEntregues();
+      loadListEntregues();
     });
   }
 
@@ -173,8 +170,8 @@ class _PaginaEntregaState extends State<PaginaEntrega> {
   Future<void> initState() {
     //async
     super.initState();
-   // loadListEntrega();
+    loadListEntrega();
     //Adicionado 15/02/2022
-   // loadListEntregues();
+    loadListEntregues();
   }
 }
