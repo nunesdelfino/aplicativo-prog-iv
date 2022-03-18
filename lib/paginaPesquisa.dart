@@ -1,4 +1,5 @@
 import 'package:fabricadechocolate/barra_busca.dart';
+import 'package:fabricadechocolate/itemList.dart';
 import 'package:fabricadechocolate/models/pedido.dart';
 import 'package:fabricadechocolate/pedidoTeste.dart';
 import 'package:fabricadechocolate/services/api_service.dart';
@@ -56,7 +57,11 @@ class _PaginaPesquisaState extends State<PaginaPesquisa> {
               builder: (context, snapshot){
                 print("teste");
                 return pedido != null? Container(
-                  child: Text(pedido.nome)
+                  child: Column(children: [
+                    Text(pedido.nome),
+                    ItemList(item: pedido),
+                  ]),
+                  
                 ): Center(
                   child: Text("Sem dados",
                   style: Theme.of(context).textTheme.bodyText1)
