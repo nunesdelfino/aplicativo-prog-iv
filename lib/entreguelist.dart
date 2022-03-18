@@ -155,6 +155,7 @@ class _EntregueListState extends State<EntregueList> {
   }
 
   _onClickDialog(BuildContext context, Pedido entregas) {
+    final ApiService api = ApiService();
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -182,7 +183,8 @@ class _EntregueListState extends State<EntregueList> {
                 child: Text("Sim"),
                 onPressed: () {
                   Navigator.pop(context);
-                  //ApiService().desfazerEntrega(entregas.id);
+                  api.desfazerEntrega(entregas.id);
+                  widget.loadListSetState();
 
                   //loadListSetState();
                 },

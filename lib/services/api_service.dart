@@ -9,23 +9,25 @@ class ApiService {
   final String apiURLModi = "http://192.168.1.15:8081/fabricadechocolate-api/api/v1/pedido";
 
   Future<Pedido> getById(String id) async {
-    Response res = await get('$apiURLModi/$id'); 
-    if(res.statusCode == 200){
+    Response res = await get('$apiURLModi/$id');
+    if (res.statusCode == 200) {
       return Pedido.fromJson(json.decode(res.body));
-    }else{
+    } else {
       return null;
-     // throw Exception('Pedido não encontrado');
+      // throw Exception('Pedido não encontrado');
     }
   }
 
   Future<List<Pedido>> getPedidos() async {
     Response res = await get(apiURL);
 
-    if(res.statusCode == 200) {
+    if (res.statusCode == 200) {
       List<dynamic> body = jsonDecode(res.body);
-      List<Pedido> p = body.map((dynamic item) => Pedido.fromJson(item)).toList();
+      List<Pedido> p =
+          body.map((dynamic item) => Pedido.fromJson(item)).toList();
       return p;
-    } if(res.statusCode == 404){
+    }
+    if (res.statusCode == 404) {
       return [];
     } else {
       throw "Falha ao carregar Lista";
@@ -42,7 +44,7 @@ class ApiService {
     }
   }
 
-Future<List<Pedido>> entregar() async {
+  Future<List<Pedido>> entregar() async {
     Response res = await get('$apiURLModi/entregar');
     if (res.statusCode == 200) {
       List<dynamic> body = jsonDecode(res.body);
@@ -89,5 +91,4 @@ Future<List<Pedido>> entregar() async {
       throw Exception('Falha ao atualizar a entrega');
     }
   }
-
 }
