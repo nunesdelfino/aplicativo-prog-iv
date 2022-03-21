@@ -1,12 +1,13 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:fabricadechocolate/itemList.dart';
 import 'package:fabricadechocolate/models/pedido.dart';
 import 'package:fabricadechocolate/services/api_service.dart';
 import 'package:flutter/material.dart';
 
 import 'itemLinha.dart';
 
-const IconData local_shipping = IconData(0xe3a6, fontFamily: 'MaterialIcons');
+const IconData cancel = IconData(0xe139, fontFamily: 'MaterialIcons');
 
 class EntregueList extends StatefulWidget {
   final List<Pedido> entregas;
@@ -52,29 +53,12 @@ class _EntregueListState extends State<EntregueList> {
             children: [
               Column(
                 children: [
-                  ItemLinha(
-                      item: "Tipo : " +
-                          captalizar(item.tipoOvo) +
-                          " === " +
-                          "Tamanho : " +
-                          (item.tamanho).toString() +
-                          " g === " +
-                          "Preço : " +
-                          stringNull(item.preco.toString())),
-                  ItemLinha(item: "Sabores : " + sabores(item)),
-                  ItemLinha(
-                      item: "Entregar : " +
-                          (item.entregar) +
-                          " -- " +
-                          "Data : " +
-                          dataPedido(item.dataEntrega)),
-                  ItemLinha(item: "Endereço : " + stringNull(item.endereco)),
-                  ItemLinha(item: "Obs : " + stringNull(item.observacao)),
+                  ItemList(item: item),
                   SizedBox(height: 5),
                   Container(
                     child: ListTile(
                       trailing: IconButton(
-                        icon: Icon(local_shipping, size: 30),
+                        icon: Icon(Icons.cancel, size: 30),
                         onPressed: () {
                           _onClickDialog(context, item);
                         },
@@ -184,9 +168,10 @@ class _EntregueListState extends State<EntregueList> {
                 onPressed: () {
                   Navigator.pop(context);
                   api.desfazerEntrega(entregas.id);
-                  widget.loadListSetState();
 
-                  //loadListSetState();
+                  setState(() {
+                    widget.loadListSetState();
+                  });
                 },
               )
             ],

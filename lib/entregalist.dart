@@ -184,7 +184,9 @@ class _EntregaListState extends State<EntregaList> {
                 onPressed: () {
                   Navigator.pop(context);
                   api.updateEntregas(entregas.id);
-                  widget.loadListSetState();
+                  setState(() {
+                    widget.loadListSetState();
+                  });
                 },
               )
             ],
